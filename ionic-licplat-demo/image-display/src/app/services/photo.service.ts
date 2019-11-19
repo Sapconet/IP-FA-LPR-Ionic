@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Camera, CameraOptions } from "@ionic-native/camera/ngx";
+import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { Storage } from '@ionic/storage';
-import { MediaCapture, MediaFile, CaptureError, CaptureVideoOptions } from '@ionic-native/media-capture/ngx';
+// import { MediaCapture, MediaFile, CaptureError, CaptureVideoOptions } from '@ionic-native/media-capture/ngx';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +11,7 @@ export class PhotoService {
   public videos: Video[] = [];
 
   // constructor(private camera: Camera, private storage: Storage) { }
-  constructor(private camera: Camera, private storage: Storage, private mediaCapture: MediaCapture) { }
+  constructor(private camera: Camera, private storage: Storage/*, private mediaCapture: MediaCapture*/) { }
 
   takePicture() {
     console.log('Camera Image clicked');
@@ -32,7 +32,7 @@ export class PhotoService {
       this.storage.set('photos', this.photos);
     }, (err) => {
       // Handle error
-      console.log("Camera issue: " + err);
+      console.log('Camera issue: ' + err);
     });
   }
 
@@ -42,16 +42,16 @@ export class PhotoService {
     });
   }
 
-  takeVideo() {
-    console.log('Video Capture clicked');
+  // takeVideo() {
+  //   console.log('Video Capture clicked');
 
-    const options: CaptureVideoOptions = { limit: 3, duration: 10 };
+  //   const options: CaptureVideoOptions = { limit: 3, duration: 10 };
 
-    this.mediaCapture.captureVideo(options).then(
-      (data: MediaFile[]) => console.log(data),
-      (err: CaptureError) => console.error(err)
-    );
-  }
+  //   this.mediaCapture.captureVideo(options).then(
+  //     (data: MediaFile[]) => console.log(data),
+  //     (err: CaptureError) => console.error(err)
+  //   );
+  // }
 }
 
 class Photo {

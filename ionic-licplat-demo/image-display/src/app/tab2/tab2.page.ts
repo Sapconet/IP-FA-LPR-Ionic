@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { PhotoService } from "../services/photo.service";
 // import { VideoService } from '../services/video.service';
 
-// import { MediaCapture, MediaFile, CaptureError, CaptureVideoOptions } from '@ionic-native/media-capture/ngx';
+// import { MediaCapture, MediaFile, CaptureError, CaptureVideoOptions } from '@ionic-native/media-capture';
 
 @Component({
   selector: "app-tab2",
@@ -14,7 +14,7 @@ export class Tab2Page implements OnInit {
   currentImage: any;
   // private mediaCapture: MediaCapture;
 
-  constructor(public photoService: PhotoService) { }
+  constructor(public photoService: PhotoService/*, public videoService: VideoService*/) { }
   // constructor(public videoService: VideoService) { }
 
   ngOnInit() {
