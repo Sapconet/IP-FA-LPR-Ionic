@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { PhotoService } from "../services/photo.service";
-// import { VideoService } from '../services/video.service';
+
+import { VideoService } from '../services/video.service';
 
 // import { MediaCapture, MediaFile, CaptureError, CaptureVideoOptions } from '@ionic-native/media-capture';
 
@@ -15,9 +16,9 @@ export class Tab2Page implements OnInit {
   // private mediaCapture: MediaCapture;
 
   constructor(public photoService: PhotoService/*, public videoService: VideoService*/) { }
-  // constructor(public videoService: VideoService) { }
 
   ngOnInit() {
     this.photoService.loadSaved();
+    console.log("Loading images...");
   }
 }

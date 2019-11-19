@@ -7,7 +7,7 @@ import { MediaCapture, MediaFile, CaptureError, CaptureVideoOptions } from '@ion
 export class VideoService {
   public videos: Video[] = [];
 
-  constructor( private mediaCapture: MediaCapture) { }
+  constructor(private mediaCapture: MediaCapture) { }
 
   takeVideo() {
     console.log('Video Capture clicked');
