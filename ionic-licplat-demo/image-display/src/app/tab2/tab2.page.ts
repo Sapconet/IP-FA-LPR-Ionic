@@ -15,7 +15,7 @@ export class Tab2Page implements OnInit {
   currentImage: any;
   // private mediaCapture: MediaCapture;
 
-  constructor(public photoService: PhotoService/*, public videoService: VideoService*/) { }
+  constructor(public photoService: PhotoService, public videoService: VideoService) { }
 
   ngOnInit() {
     this.photoService.loadSaved();

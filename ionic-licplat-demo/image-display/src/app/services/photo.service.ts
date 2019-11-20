@@ -49,6 +49,10 @@ export class PhotoService {
     }
     );
   }
+
+  clearAll() {
+    this.storage.clear();
+  }
 }
 class Photo {
   data: any;
