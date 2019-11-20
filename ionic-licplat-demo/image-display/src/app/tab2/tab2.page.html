@@ -10,7 +10,7 @@
   <ion-grid>
     <ion-row>
       <ion-col size="6" *ngFor="let photo of photoService.photos">
-        <ion-img [src]="photo.data"></ion-img>
+        <ion-img [src]="photo.data">{{photo.data}}</ion-img>
       </ion-col>
     </ion-row>
   </ion-grid>
@@ -42,9 +42,9 @@
     </ion-fab-button>
   </ion-fab>
 
-  <!-- <ion-fab vertical="bottom" horizontal="start">
+  <ion-fab vertical="bottom" horizontal="start">
     <ion-fab-button (click)="photoService.clearAll()">
       <ion-icon name="trash"></ion-icon>
     </ion-fab-button>
-  </ion-fab> -->
+  </ion-fab>
 </ion-content>

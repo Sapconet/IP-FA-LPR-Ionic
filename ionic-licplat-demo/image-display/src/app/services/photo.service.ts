@@ -2,12 +2,17 @@ import { Injectable, ChangeDetectorRef } from '@angular/core';
 import { Camera, CameraOptions, PictureSourceType } from '@ionic-native/camera/ngx';
 import { Storage } from '@ionic/storage';
 
-/* import { File, FileEntry } from '@ionic-native/File/ngx';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { ActionSheetController, ToastController, Platform, LoadingController } from '@ionic/angular';
+
+import { File, FileEntry } from '@ionic-native/File/ngx';
+/* 
 import { FilePath } from '@ionic-native/file-path/ngx';
-import { HttpClient } from '@angular/common/http';
+
 import { WebView } from '@ionic-native/ionic-webview/ngx';
 
-import { ActionSheetController, ToastController, Platform, LoadingController } from '@ionic/angular';
+
 import { finalize } from 'rxjs/operators';*/
 
 @Injectable({
@@ -16,24 +21,37 @@ import { finalize } from 'rxjs/operators';*/
 export class PhotoService {
   public photos: Photo[] = [];
 
-  constructor(private camera: Camera, private storage: Storage) { }
+  constructor(private camera: Camera, private storage: Storage, private http: HttpClient, private toastController: ToastController/*, private File: File*/) { }
 
   takePicture() {
     console.log('Camera Image clicked');
 
     const options: CameraOptions = {
-      quality: 100,
+      quality: 50,
       destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
-      mediaType: this.camera.MediaType.ALLMEDIA
+      mediaType: this.camera.MediaType.PICTURE,
+      saveToPhotoAlbum: true,
+      correctOrientation: true,
     };
 
     this.camera.getPicture(options).then((imageDATA) => {
-      // Add new photo to gallery
+
+      // let filename = imageURI.substring(imageURI.lastIndexOf('/') + 1);
+      // let path = imageURI.substring(0, imageURI.lastIndexOf('/') + 1);
+
+      // this.File.readAsDataURL(path, filename).then(res => var_image = res);
+
       this.photos.unshift({
         data: 'data:image/jpeg;base64,' + imageDATA
-        // data: imageURI
       });
+
+      // Add new photo to gallery
+      /* this.photos.unshift({
+        data: this.File.readAsDataURL(path, filename)
+      });*/
+
+      this.ProduceToKafka(imageDATA);
 
       // Save all photos for later viewing
       this.storage.set('photos', this.photos);
@@ -51,7 +69,39 @@ export class PhotoService {
   }
 
   clearAll() {
+    console.log("Clearing storage");
     this.storage.clear();
+  }
+
+  ProduceToKafka(photo: Photo) {
+    console.log("Producing to Kafka");
+
+    // const sendPhoto = JSON.parse('{ "Data": ' + photo.data + ' }');
+
+    const HttpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
+
+    this.http.post('https://b507709b.ngrok.io/send-img', photo, HttpOptions).subscribe(
+      (val) => {
+        console.log("post call successful value returned in body", val);
+      },
+      response => {
+        console.log("post call in error", response);
+        this.presentToast(JSON.stringify(response.error.text));
+
+      },
+      () => {
+        console.log("The post observable is now completed.");
+      }
+    );
+  }
+
+  async presentToast(text) {
+    const toast = await this.toastController.create({
+      message: text,
+      position: 'bottom',
+      duration: 3000
+    });
+    toast.present();
   }
 }
 class Photo {

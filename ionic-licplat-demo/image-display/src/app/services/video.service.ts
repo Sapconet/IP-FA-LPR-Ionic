@@ -7,7 +7,8 @@ import { Injectable } from '@angular/core';
 export class VideoService {
   public videos: Video[] = [];
 
-  constructor(/*private mediaCapture: MediaCapture*/) { }
+  // constructor(private mediaCapture: MediaCapture) { }
+  constructor() { }
 
   takeVideo() {
     console.log('Video Capture clicked');
@@ -23,7 +24,7 @@ export class VideoService {
       (err: CaptureError) => console.error(err)
     );*/
 
-    // this.mediaCapture.captureVideo();
+    //  this.mediaCapture.captureVideo();
   }
 }
 class Video {
