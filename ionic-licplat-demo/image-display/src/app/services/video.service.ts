@@ -24,7 +24,14 @@ export class VideoService {
       (err: CaptureError) => console.error(err)
     );*/
 
-    //  this.mediaCapture.captureVideo();
+    // this.mediaCapture.captureVideo();
+
+    // const options: CaptureImageOptions = { limit: 3 };
+    // this.mediaCapture.captureImage(options)
+    //   .then(
+    //     (data: MediaFile[]) => console.log(data),
+    //     (err: CaptureError) => console.error(err)
+    //   );
   }
 }
 class Video {

@@ -29,7 +29,7 @@ import { FilePath } from '@ionic-native/file-path/ngx';
     File,
     WebView,
     FilePath,
-    //  MediaCapture,
+    // MediaCapture,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

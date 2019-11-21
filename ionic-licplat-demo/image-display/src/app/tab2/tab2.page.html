@@ -7,6 +7,10 @@
 </ion-header>
 
 <ion-content class="ion-padding">
+
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+  </ion-refresher>
+
   <ion-grid>
     <ion-row>
       <ion-col size="6" *ngFor="let photo of photoService.photos">
@@ -15,7 +19,20 @@
     </ion-row>
   </ion-grid>
 
+
   <!-- <ion-list>
+    <ion-item *ngFor="let photo of photoService.photos">
+      <ion-thumbnail slot="start">
+        <ion-img [src]="photo.data"></ion-img>
+      </ion-thumbnail>
+    </ion-item>
+  </ion-list> -->
+
+
+  <!-- 
+     <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content>
+      <ion-list>
     <ion-item *ngFor="let photo of photoService.photos; index as pos">
       <ion-thumbnail slot="start">
         <ion-img [src]="photo.filePath"></ion-img>
@@ -28,7 +45,9 @@
         <ion-icon slot="icon-only" name="trash"></ion-icon>
       </ion-button>
     </ion-item>
-  </ion-list> -->
+  </ion-list> 
+</ion-refresher-content>
+  </ion-refresher>-->
 
   <ion-fab vertical="bottom" horizontal="center" slot="fixed">
     <ion-fab-button (click)="photoService.takePicture()">
@@ -42,9 +61,11 @@
     </ion-fab-button>
   </ion-fab>
 
-  <ion-fab vertical="bottom" horizontal="start">
+  <ion-fab vertical="bottom" horizontal="start" slot="fixed">
     <ion-fab-button (click)="photoService.clearAll()">
       <ion-icon name="trash"></ion-icon>
     </ion-fab-button>
   </ion-fab>
+
+
 </ion-content>

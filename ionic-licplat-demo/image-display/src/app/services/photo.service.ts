@@ -27,7 +27,7 @@ export class PhotoService {
     console.log('Camera Image clicked');
 
     const options: CameraOptions = {
-      quality: 50,
+      quality: 10,
       destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE,
@@ -75,14 +75,18 @@ export class PhotoService {
 
   ProduceToKafka(photo: Photo) {
     console.log("Producing to Kafka");
+    // console.log(photo);
 
-    // const sendPhoto = JSON.parse('{ "Data": ' + photo.data + ' }');
+    // const sendPhoto = JSON.parse('{ "photo": "A base64 image" }');
+    const sendPhoto = JSON.parse('{ "photo": ' + photo + ' }');
+    console.log(sendPhoto);
 
     const HttpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
 
-    this.http.post('https://b507709b.ngrok.io/send-img', photo, HttpOptions).subscribe(
-      (val) => {
+    this.http.post('https://012169b1.ngrok.io/send-img', sendPhoto, HttpOptions).subscribe(
+      val => {
         console.log("post call successful value returned in body", val);
+        this.presentToast("Well, hello sailor!");
       },
       response => {
         console.log("post call in error", response);
