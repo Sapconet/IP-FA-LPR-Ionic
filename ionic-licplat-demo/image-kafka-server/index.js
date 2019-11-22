@@ -49,7 +49,7 @@ app.post("/send-img", (req, res) => {
   });*/
 
   res.send("I received your image..." + message);
-  res.sendFile(path.join(__dirname + "/index.html"));
+  // res.sendFile(path.join(__dirname + "/index.html"));
 });
 
 app.get("/", (req, res) => {

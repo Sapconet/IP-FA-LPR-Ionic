@@ -17,6 +17,9 @@ import { File } from '@ionic-native/File/ngx';
 import { WebView } from '@ionic-native/ionic-webview/ngx';
 import { FilePath } from '@ionic-native/file-path/ngx';
 // import { MediaCapture } from '@ionic-native/media-capture';
+import { CameraPreview } from '@ionic-native/camera-preview/ngx';
+
+import { AlertController } from '@ionic/angular';
 
 @NgModule({
   declarations: [AppComponent],
@@ -29,6 +32,8 @@ import { FilePath } from '@ionic-native/file-path/ngx';
     File,
     WebView,
     FilePath,
+    AlertController,
+    CameraPreview,
     // MediaCapture,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],

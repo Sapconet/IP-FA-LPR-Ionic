@@ -4,7 +4,7 @@ import { Storage } from '@ionic/storage';
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { ActionSheetController, ToastController, Platform, LoadingController } from '@ionic/angular';
+import { ActionSheetController, ToastController, Platform, LoadingController, AlertController, } from '@ionic/angular';
 
 import { File, FileEntry } from '@ionic-native/File/ngx';
 /* 
@@ -21,7 +21,7 @@ import { finalize } from 'rxjs/operators';*/
 export class PhotoService {
   public photos: Photo[] = [];
 
-  constructor(private camera: Camera, private storage: Storage, private http: HttpClient, private toastController: ToastController/*, private File: File*/) { }
+  constructor(private camera: Camera, private storage: Storage, private http: HttpClient, private toastController: ToastController, private alertController: AlertController) { }
 
   takePicture() {
     console.log('Camera Image clicked');
@@ -68,22 +68,50 @@ export class PhotoService {
     );
   }
 
-  clearAll() {
-    console.log("Clearing storage");
-    this.storage.clear();
+  async clearAll() {
+    const alert = await this.alertController.create({
+      header: 'Confirm!',
+      message: 'Areyou sure you wish to <strong>delete all stored photos</strong>?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+            console.log('Confirm Cancel');
+          }
+        }, {
+          text: 'Okay',
+          handler: () => {
+            console.log('Confirm Okay');
+            console.log("Clearing storage");
+            this.storage.clear();
+          }
+        }
+      ]
+    });
+
+    await alert.present();
   }
+
+  // clearAll() {
+  //   console.log("Clearing storage");
+  //   this.storage.clear();
+  // }
 
   ProduceToKafka(photo: Photo) {
     console.log("Producing to Kafka");
     // console.log(photo);
 
-    // const sendPhoto = JSON.parse('{ "photo": "A base64 image" }');
-    const sendPhoto = JSON.parse('{ "photo": ' + photo + ' }');
-    console.log(sendPhoto);
+    const api_url = 'http://localhost:5000/send-img';
+
+    const sendPhoto = JSON.parse('{ "photo": "A base64 image" }');
+    // const sendPhoto = JSON.parse('{ "photo": ' + photo + ' }');
+    // console.log(sendPhoto);
 
     const HttpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
 
-    this.http.post('https://012169b1.ngrok.io/send-img', sendPhoto, HttpOptions).subscribe(
+    this.http.post(api_url, sendPhoto, HttpOptions).subscribe(
       val => {
         console.log("post call successful value returned in body", val);
         this.presentToast("Well, hello sailor!");
