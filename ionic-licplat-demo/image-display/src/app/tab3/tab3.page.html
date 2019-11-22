@@ -1,15 +1,21 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Tab Three
+      Live Recognition
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content></ion-content>
-
-<ion-fab vertical="bottom" horizontal="center" slot="fixed">
-  <ion-fab-button (click)="startLivePreview()">
-    <ion-icon name="eye"></ion-icon>
-  </ion-fab-button>
-</ion-fab>
+<ion-footer>
+  <ion-button id="startPreviewButton" expand="full" fill="solid" size="large" color="primary"
+    (click)="startLivePreview()" *ngIf="hideStart">
+    <ion-icon name="eye" slot="start"></ion-icon>
+    Start Live Preview
+  </ion-button>
+  <ion-button id="stopPreviewButton" expand="full" fill="solid" size="large" color="secondary"
+    (click)="stopLivePreview()" *ngIf="hideStop">
+    <ion-icon name="eye-off" slot="start"></ion-icon>
+    Stop Live Preview
+  </ion-button>
+</ion-footer>

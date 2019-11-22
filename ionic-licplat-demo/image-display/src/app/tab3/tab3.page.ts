@@ -8,6 +8,9 @@ import { CameraPreview, CameraPreviewPictureOptions, CameraPreviewOptions, Camer
 })
 export class Tab3Page implements OnInit {
 
+  hideStart: boolean = true;
+  hideStop: boolean = false;
+
   constructor(private cameraPreview: CameraPreview) { }
 
   ngOnInit() {
@@ -29,5 +32,13 @@ export class Tab3Page implements OnInit {
     };
 
     this.cameraPreview.startCamera(CameraPreviewOptions);
+
+    this.hideStart = !this.hideStart;
+    this.hideStop = !this.hideStop;
+  }
+
+  stopLivePreview() {
+    this.hideStart = !this.hideStart;
+    this.hideStop = !this.hideStop;
   }
 }
