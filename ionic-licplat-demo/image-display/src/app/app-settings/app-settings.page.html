@@ -1,0 +1,15 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-menu-button color="primary" slot="start" autoHide="true"></ion-menu-button>
+    <ion-title>
+      Settings
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+  </ion-refresher>
+
+</ion-content>

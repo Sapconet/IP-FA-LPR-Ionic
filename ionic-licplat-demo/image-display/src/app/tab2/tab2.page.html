@@ -1,5 +1,6 @@
 <ion-header>
   <ion-toolbar>
+    <ion-menu-button color="primary" slot="start"></ion-menu-button>
     <ion-title>
       Image Gallery
     </ion-title>
@@ -50,22 +51,26 @@
   </ion-refresher>-->
 
   <ion-fab vertical="bottom" horizontal="center" slot="fixed">
-    <ion-fab-button (click)="photoService.takePicture()">
+    <ion-fab-button (click)="photoService.takePicture()" *ngIf="booleanValue">
       <ion-icon name="camera">Take Picture</ion-icon>
     </ion-fab-button>
   </ion-fab>
 
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button (click)="videoService.takeVideo()">
+  <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+    <ion-fab-button (click)="videoService.takeVideo()" *ngIf="!booleanValue">
       <ion-icon name="videocam"></ion-icon>
     </ion-fab-button>
   </ion-fab>
 
-  <ion-fab vertical="bottom" horizontal="start" slot="fixed">
-    <ion-fab-button (click)="photoService.clearAll()">
-      <ion-icon name="trash"></ion-icon>
+  <!-- <ion-fab vertical="bottom" horizontal="start" slot="fixed">
+            <ion-fab-button (click)="photoService.clearAll()">
+              <ion-icon name="trash"></ion-icon>
+            </ion-fab-button>
+          </ion-fab> -->
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="switchInput($event)" color="secondary">
+      <ion-icon name="reverse-camera"></ion-icon>
     </ion-fab-button>
   </ion-fab>
-
-
 </ion-content>
