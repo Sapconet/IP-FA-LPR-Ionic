@@ -6,6 +6,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ActionSheetController, ToastController, Platform, LoadingController, AlertController, } from '@ionic/angular';
 
+import { OpenALPR, OpenALPROptions, OpenALPRResult } from '@ionic-native/openalpr/ngx';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
+
 import { File, FileEntry } from '@ionic-native/File/ngx';
 /* 
 import { FilePath } from '@ionic-native/file-path/ngx';
@@ -21,7 +24,14 @@ import { finalize } from 'rxjs/operators';*/
 export class PhotoService {
   public photos: Photo[] = [];
 
-  constructor(private camera: Camera, private storage: Storage, private http: HttpClient, private toastController: ToastController, private alertController: AlertController) { }
+  constructor(
+    private camera: Camera,
+    private storage: Storage,
+    private http: HttpClient,
+    private toastController: ToastController,
+    private alertController: AlertController,
+    private openALPR: OpenALPR,
+    private barcodeScanner: BarcodeScanner) { }
 
   takePicture() {
     console.log('Camera Image clicked');
@@ -43,7 +53,8 @@ export class PhotoService {
       // this.File.readAsDataURL(path, filename).then(res => var_image = res);
 
       this.photos.unshift({
-        data: 'data:image/jpeg;base64,' + imageDATA
+        data: 'data:image/jpeg;base64,' + imageDATA,
+        date: new Date()
       });
 
       // Add new photo to gallery
@@ -55,10 +66,39 @@ export class PhotoService {
 
       // Save all photos for later viewing
       this.storage.set('photos', this.photos);
+
+      // Using OpenLP plugin - for testing only
+      /*  const scanOptions: OpenALPROptions = {
+         country: this.openALPR.Country.EU,
+         amount: 3
+       }
+ 
+       this.openALPR.scan(imageDATA, scanOptions)
+         .then((res: [OpenALPRResult]) => {
+           console.log(res);
+           this.presentToast(res);
+         })
+         .catch((error: Error) => console.error(error));*/
+
+
     }, (err) => {
       // Handle error
       console.log('Camera issue: ' + err);
     });
+  }
+
+  scanCode() {
+    // merely for testing 
+    this.barcodeScanner.scan().then(barcodeData => {
+      console.log('Barcode data', barcodeData);
+      this.presentToast(barcodeData.text);
+    }).catch(err => {
+      console.log('Error', err);
+    });
+  }
+
+  giveImgInfo(imgSrc) {
+    this.presentToast(imgSrc);
   }
 
   loadSaved() {
@@ -131,13 +171,14 @@ export class PhotoService {
     const toast = await this.toastController.create({
       message: text,
       position: 'bottom',
-      duration: 3000
+      duration: 2000
     });
     toast.present();
   }
 }
 class Photo {
   data: any;
+  date: Date;
 }
 
 // export class PhotoService {

@@ -16,12 +16,18 @@ export class Tab2Page implements OnInit {
   currentImage: any;
   // private mediaCapture: MediaCapture;
   booleanValue: boolean = true;
+  selectedPhoto: any; 
+  isAtBottom: boolean = false;
 
   constructor(public photoService: PhotoService, public videoService: VideoService, public toastController: ToastController) { }
 
   ngOnInit() {
     this.photoService.loadSaved();
     console.log('Loading images...');
+  }
+
+  onSelect(photo){
+    this.selectedPhoto = photo;
   }
 
   doRefresh(event) {
@@ -42,7 +48,6 @@ export class Tab2Page implements OnInit {
     } else {
       this.presentToast('Input switched to Video Capturing');
     }
-
   }
 
   async presentToast(text) {
@@ -53,4 +58,8 @@ export class Tab2Page implements OnInit {
     });
     toast.present();
   }
+
+  scrollToBottom($event){}
+
+  scrollToTop($event) {}
 }

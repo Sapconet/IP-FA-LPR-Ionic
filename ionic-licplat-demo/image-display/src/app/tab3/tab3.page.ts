@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CameraPreview, CameraPreviewPictureOptions, CameraPreviewOptions, CameraPreviewDimensions } from '@ionic-native/camera-preview/ngx';
+import { Platform } from '@ionic/angular';
 
 @Component({
   selector: 'app-tab3',
@@ -9,36 +10,45 @@ import { CameraPreview, CameraPreviewPictureOptions, CameraPreviewOptions, Camer
 export class Tab3Page implements OnInit {
 
   hideStart: boolean = true;
-  hideStop: boolean = false;
 
-  constructor(private cameraPreview: CameraPreview) { }
+  constructor(private cameraPreview: CameraPreview, private platform: Platform) { }
 
   ngOnInit() {
   }
 
   startLivePreview() {
-    const CameraPreviewOptions = {
+    console.log('Starting Preview...');
+
+    const cameraPreviewOptions: CameraPreviewOptions = {
       x: 0,
       y: 0,
-      width: window.screen.width,
-      height: window.screen.height,
+      width: window.screen.width - 50,
+      height: window.screen.height - 50,
       camera: this.cameraPreview.CAMERA_DIRECTION.BACK,
-      toBack: false,
-      tapPhoto: true,
-      tapFocus: false,
+      toBack: true,
+      tapPhoto: false,
+      tapToFocus: false,
       previewDrag: false,
-      storeToFile: false,
       disableExifHeaderStripping: false
     };
 
-    this.cameraPreview.startCamera(CameraPreviewOptions);
+    this.platform.ready().then(() => {
+      this.cameraPreview.startCamera(cameraPreviewOptions).then((info) => {
+        alert(info);
+      }).catch((err) => {
+        alert(err);
+      });
+    });
 
     this.hideStart = !this.hideStart;
-    this.hideStop = !this.hideStop;
   }
 
   stopLivePreview() {
+
+    console.log('Stopping Preview...');
+
     this.hideStart = !this.hideStart;
-    this.hideStop = !this.hideStop;
+
+    this.cameraPreview.stopCamera();
   }
 }

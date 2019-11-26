@@ -6,7 +6,7 @@ var methodOverride = require("method-override");
 var cors = require("cors");
 
 const app = express();
-const port = 5000;
+const port = config.PORT;
 app.use(bodyParser.json({ limit: "50mb" }));
 app.use(
   bodyParser.urlencoded({
@@ -30,7 +30,7 @@ app.post("/send-img", (req, res) => {
   var message = JSON.stringify(req.body.photo);
 
   /*var Producer = kafka.Producer;
-  var kafka_client = new kafka.KafkaClient({ kafkaHost: "18.209.92.224:9092" });
+  var kafka_client = new kafka.KafkaClient({ kafkaHost: config.KAFKA_HOST });
 
   var kafka_user_producer = new Producer(kafka_client);
 

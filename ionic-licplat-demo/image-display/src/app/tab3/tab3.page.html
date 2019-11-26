@@ -1,13 +1,19 @@
 <ion-header>
   <ion-toolbar>
     <ion-menu-button color="primary" slot="start"></ion-menu-button>
-    <ion-title>
+    <ion-title style="float: left;">
       Live Recognition
     </ion-title>
+    <ion-icon name="aperture" size="large" slot="end"></ion-icon>
   </ion-toolbar>
 </ion-header>
 
-<ion-content></ion-content>
+<ion-content *ngIf="hideStart" color="light">
+</ion-content>
+
+<ion-content *ngIf="!hideStart" color="dark">
+</ion-content>
+
 <ion-footer>
   <ion-button id="startPreviewButton" expand="full" fill="solid" size="large" color="primary"
     (click)="startLivePreview()" *ngIf="hideStart">
@@ -15,7 +21,7 @@
     Start Live Preview
   </ion-button>
   <ion-button id="stopPreviewButton" expand="full" fill="solid" size="large" color="secondary"
-    (click)="stopLivePreview()" *ngIf="hideStop">
+    (click)="stopLivePreview()" *ngIf="!hideStart">
     <ion-icon name="eye-off" slot="start"></ion-icon>
     Stop Live Preview
   </ion-button>

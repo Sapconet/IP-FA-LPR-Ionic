@@ -12,4 +12,10 @@
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
   </ion-refresher>
 
+  <ion-item>
+    <ion-icon slot="start" name="moon" *ngIf="toggleMode"></ion-icon>
+    <ion-icon slot="start" name="sunny" *ngIf="!toggleMode"></ion-icon>
+    <ion-label slot="start">Toggle Dark Mode</ion-label>
+    <ion-toggle slot="end" (ionChange)="activateDarkMode($event)" [checked]="toggleMode" id="themeToggle"></ion-toggle>
+  </ion-item>
 </ion-content>

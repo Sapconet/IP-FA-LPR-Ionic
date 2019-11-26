@@ -18,11 +18,15 @@ import { WebView } from '@ionic-native/ionic-webview/ngx';
 import { FilePath } from '@ionic-native/file-path/ngx';
 // import { MediaCapture } from '@ionic-native/media-capture';
 import { CameraPreview } from '@ionic-native/camera-preview/ngx';
+import { OpenALPR } from '@ionic-native/openalpr/ngx';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 
 import { AlertController } from '@ionic/angular';
 
+import { ImgCardComponent } from './img-card/img-card.component';
+
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, ImgCardComponent],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, IonicStorageModule.forRoot(), HttpClientModule],
   providers: [
@@ -34,6 +38,8 @@ import { AlertController } from '@ionic/angular';
     FilePath,
     AlertController,
     CameraPreview,
+    OpenALPR,
+    BarcodeScanner,
     // MediaCapture,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
