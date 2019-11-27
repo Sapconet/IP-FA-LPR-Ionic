@@ -8,8 +8,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content 
-class="ion-padding" >
+<ion-content class="ion-padding">
 
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
   </ion-refresher>
@@ -24,12 +23,12 @@ class="ion-padding" >
     </ion-row>
   </ion-grid> -->
 
-  <ion-list lines="none" > 
-    <ion-item *ngFor="let photo of photoService.photos" (click)="photoService.giveImgInfo(photo.data)">      
-        <ion-thumbnail size="large" slot="start">
-          <ion-img [src]="photo.data" alt=""></ion-img>
-        </ion-thumbnail>
-        <ion-label>Date: {{photo.date}}</ion-label>      
+  <ion-list lines="none">
+    <ion-item *ngFor="let photo of photoService.photos" (click)="photoService.giveImgInfo(photo.data)">
+      <ion-thumbnail size="large" slot="start">
+        <ion-img [src]="photo.data" alt=""></ion-img>
+      </ion-thumbnail>
+      <ion-label>Date: {{photo.date}}</ion-label>
     </ion-item>
   </ion-list>
 
@@ -66,11 +65,11 @@ class="ion-padding" >
     </ion-fab-button>
   </ion-fab>
 
-  <!-- <ion-fab vertical="bottom" horizontal="start" slot="fixed">
-            <ion-fab-button (click)="photoService.clearAll()">
-              <ion-icon name="trash"></ion-icon>
-            </ion-fab-button>
-          </ion-fab> -->
+  <!-- <ion-fab vertical="bottom" horizontal="start" slot="fixed" *ngIf="toggleDev">
+    <ion-fab-button (click)="photoService.clearAll()">
+      <ion-icon name="trash"></ion-icon>
+    </ion-fab-button>
+  </ion-fab> -->
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button (click)="switchInput($event)" color="secondary">

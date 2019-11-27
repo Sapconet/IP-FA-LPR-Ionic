@@ -3,6 +3,7 @@ import { ToastController } from '@ionic/angular';
 
 import { PhotoService } from '../services/photo.service';
 import { VideoService } from '../services/video.service';
+import { AppSettingsPage } from '../app-settings/app-settings.page';
 
 // import { MediaCapture, MediaFile, CaptureError, CaptureVideoOptions } from '@ionic-native/media-capture';
 
@@ -16,17 +17,21 @@ export class Tab2Page implements OnInit {
   currentImage: any;
   // private mediaCapture: MediaCapture;
   booleanValue: boolean = true;
-  selectedPhoto: any; 
+  selectedPhoto: any;
   isAtBottom: boolean = false;
 
-  constructor(public photoService: PhotoService, public videoService: VideoService, public toastController: ToastController) { }
+  constructor(
+    public photoService: PhotoService,
+    public videoService: VideoService,
+    public toastController: ToastController) { }
 
   ngOnInit() {
     this.photoService.loadSaved();
+    // this.toggleDev = this.appSettingsPage.toggleDev;
     console.log('Loading images...');
   }
 
-  onSelect(photo){
+  onSelect(photo) {
     this.selectedPhoto = photo;
   }
 
@@ -59,7 +64,9 @@ export class Tab2Page implements OnInit {
     toast.present();
   }
 
-  scrollToBottom($event){}
+  scrollToBottom($event) { }
 
-  scrollToTop($event) {}
+  scrollToTop($event) { }
+
+
 }

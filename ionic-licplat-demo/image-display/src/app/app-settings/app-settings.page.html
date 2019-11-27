@@ -11,11 +11,27 @@
 
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
   </ion-refresher>
-
-  <ion-item>
-    <ion-icon slot="start" name="moon" *ngIf="toggleMode"></ion-icon>
-    <ion-icon slot="start" name="sunny" *ngIf="!toggleMode"></ion-icon>
-    <ion-label slot="start">Toggle Dark Mode</ion-label>
-    <ion-toggle slot="end" (ionChange)="activateDarkMode($event)" [checked]="toggleMode" id="themeToggle"></ion-toggle>
-  </ion-item>
+  <ion-list lines="none">
+    <ion-item-divider>
+      <ion-label>Appearance</ion-label>
+    </ion-item-divider>
+    <ion-item>
+      <ion-icon slot="start" name="moon" *ngIf="toggleMode"></ion-icon>
+      <ion-icon slot="start" name="sunny" *ngIf="!toggleMode"></ion-icon>
+      <ion-label slot="start">Dark Mode</ion-label>
+      <ion-toggle slot="end" (ionChange)="activateDarkMode($event)" [checked]="toggleMode" id="themeToggle">
+      </ion-toggle>
+    </ion-item>
+    <ion-item-divider>
+      <ion-label>Developer Options</ion-label>
+    </ion-item-divider>
+    <ion-item>
+      <ion-icon slot="start" name="happy" *ngIf="!toggleDev"></ion-icon>
+      <ion-icon slot="start" name="sad" *ngIf="toggleDev"></ion-icon>
+      <ion-label slot="start" *ngIf="!toggleDev">Plebeian</ion-label>
+      <ion-label slot="start" *ngIf="toggleDev">Developer</ion-label>
+      <ion-toggle slot="end" (ionChange)="enableDeleteButton($event)" [checked]="toggleDev" id="devToggle">
+      </ion-toggle>
+    </ion-item>
+  </ion-list>
 </ion-content>

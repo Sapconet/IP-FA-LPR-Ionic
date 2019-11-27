@@ -8,6 +8,7 @@ import { ToastController } from '@ionic/angular';
 })
 export class AppSettingsPage implements OnInit {
   toggleMode: boolean = false;
+  toggleDev: boolean = false;
 
   constructor(public toastController: ToastController) { }
 
@@ -51,6 +52,17 @@ export class AppSettingsPage implements OnInit {
     // Called by the media query to check/uncheck the toggle
     function checkToggle(shouldCheck) {
       // toggle.check = shouldCheck;
+    }
+  }
+
+  enableDeleteButton(event) {
+    console.log('Dev Mode Toggled');
+
+    this.toggleDev = !this.toggleDev;
+    if (this.toggleDev === true) {
+      this.presentToast('Dev Mode is on')
+    } else {
+      this.presentToast('Dev Mode is off')
     }
   }
 
