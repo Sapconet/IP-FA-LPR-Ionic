@@ -2,9 +2,9 @@ import { Injectable, ChangeDetectorRef } from '@angular/core';
 import { Camera, CameraOptions, PictureSourceType } from '@ionic-native/camera/ngx';
 import { Storage } from '@ionic/storage';
 
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpUrlEncodingCodec } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { ActionSheetController, ToastController, Platform, LoadingController, AlertController, } from '@ionic/angular';
+import { ActionSheetController, ToastController, Platform, LoadingController, AlertController } from '@ionic/angular';
 
 import { OpenALPR, OpenALPROptions, OpenALPRResult } from '@ionic-native/openalpr/ngx';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
@@ -46,21 +46,10 @@ export class PhotoService {
     };
 
     this.camera.getPicture(options).then((imageDATA) => {
-
-      // let filename = imageURI.substring(imageURI.lastIndexOf('/') + 1);
-      // let path = imageURI.substring(0, imageURI.lastIndexOf('/') + 1);
-
-      // this.File.readAsDataURL(path, filename).then(res => var_image = res);
-
       this.photos.unshift({
         data: 'data:image/jpeg;base64,' + imageDATA,
         date: new Date()
       });
-
-      // Add new photo to gallery
-      /* this.photos.unshift({
-        data: this.File.readAsDataURL(path, filename)
-      });*/
 
       this.ProduceToKafka(imageDATA);
 
@@ -134,6 +123,10 @@ export class PhotoService {
     await alert.present();
   }
 
+  clearSelectedOne(event) {
+    this.presentAlertConfirm("Are you sure you wish to delete this image? It cannot be undone.")
+  }
+
   // clearAll() {
   //   console.log("Clearing storage");
   //   this.storage.clear();
@@ -143,28 +136,30 @@ export class PhotoService {
     console.log("Producing to Kafka");
     // console.log(photo);
 
-    const api_url = 'http://localhost:5000/send-img';
+    this.presentToast('Image sent to Kafka for training...');
 
-    const sendPhoto = JSON.parse('{ "photo": "A base64 image" }');
+    // const api_url = 'http://localhost:5000/send-img';
+
+    // // const sendPhoto = JSON.parse('{ "photo": "A base64 image" }');
     // const sendPhoto = JSON.parse('{ "photo": ' + photo + ' }');
     // console.log(sendPhoto);
 
-    const HttpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
+    // const HttpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
 
-    this.http.post(api_url, sendPhoto, HttpOptions).subscribe(
-      val => {
-        console.log("post call successful value returned in body", val);
-        this.presentToast("Well, hello sailor!");
-      },
-      response => {
-        console.log("post call in error", response);
-        this.presentToast(JSON.stringify(response.error.text));
+    // this.http.post(api_url, sendPhoto, HttpOptions).subscribe(
+    //   val => {
+    //     console.log("post call successful value returned in body", val);
+    //     this.presentToast("Well, hello sailor!");
+    //   },
+    //   response => {
+    //     console.log("post call in error", response);
+    //     this.presentToast(JSON.stringify(response.error.text));
 
-      },
-      () => {
-        console.log("The post observable is now completed.");
-      }
-    );
+    //   },
+    //   () => {
+    //     console.log("The post observable is now completed.");
+    //   }
+    // );
   }
 
   async presentToast(text) {
@@ -174,6 +169,28 @@ export class PhotoService {
       duration: 2000
     });
     toast.present();
+  }
+
+  async presentAlertConfirm(text) {
+    const alert = await this.alertController.create({
+      header: 'Alert',
+      message: text,
+      buttons: [{
+        text: 'Cancel',
+        role: 'cancel',
+        cssClass: 'secondary',
+        handler: (blah) => {
+          console.log('Confirm Cancel: blah');
+        }
+      }, {
+        text: 'Okay',
+        handler: () => {
+          console.log('Confirm Okay');
+          this.presentToast("Image deleted");
+        }
+      }]
+    });
+    await alert.present();
   }
 }
 class Photo {

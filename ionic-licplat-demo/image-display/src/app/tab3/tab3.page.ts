@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CameraPreview, CameraPreviewPictureOptions, CameraPreviewOptions, CameraPreviewDimensions } from '@ionic-native/camera-preview/ngx';
 import { Platform } from '@ionic/angular';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-tab3',
@@ -11,7 +12,7 @@ export class Tab3Page implements OnInit {
 
   hideStart: boolean = true;
 
-  constructor(private cameraPreview: CameraPreview, private platform: Platform) { }
+  constructor(private cameraPreview: CameraPreview, private platform: Platform, public alertController: AlertController) { }
 
   ngOnInit() {
   }
@@ -50,5 +51,19 @@ export class Tab3Page implements OnInit {
     this.hideStart = !this.hideStart;
 
     this.cameraPreview.stopCamera();
+  }
+
+  async presentAlert(text) {
+    const alert = await this.alertController.create({
+      header: 'Info',
+      subHeader: 'About this page:',
+      message: text,
+      buttons: ['OK']
+    });
+    await alert.present();
+  }
+
+  imgIconClick(event) {
+    this.presentAlert('This page allows you to preview a camera feed which allows a live prediction to show');
   }
 }

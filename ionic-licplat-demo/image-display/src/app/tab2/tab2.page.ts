@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastController } from '@ionic/angular';
+import { AlertController } from '@ionic/angular';
 
 import { PhotoService } from '../services/photo.service';
 import { VideoService } from '../services/video.service';
@@ -23,7 +24,8 @@ export class Tab2Page implements OnInit {
   constructor(
     public photoService: PhotoService,
     public videoService: VideoService,
-    public toastController: ToastController) { }
+    public toastController: ToastController,
+    public alertController: AlertController) { }
 
   ngOnInit() {
     this.photoService.loadSaved();
@@ -64,9 +66,18 @@ export class Tab2Page implements OnInit {
     toast.present();
   }
 
-  scrollToBottom($event) { }
+  async presentAlert(text) {
+    const alert = await this.alertController.create({
+      header: 'Info',
+      subHeader: 'About this page:',
+      message: text,
+      buttons: ['OK']
+    });
+    await alert.present();
+  }
 
-  scrollToTop($event) { }
-
+  imgIconClick(event) {
+    this.presentAlert('This page allows you to capture images/videos for training');
+  }
 
 }

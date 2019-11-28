@@ -4,6 +4,7 @@ var kafka = require("kafka-node");
 var logger = require("morgan");
 var methodOverride = require("method-override");
 var cors = require("cors");
+var config = require("./config");
 
 const app = express();
 const port = config.PORT;
@@ -25,30 +26,40 @@ var path = require("path"); /*,
 
 app.post("/send-img", (req, res) => {
   console.log("Request received");
-  // console.log("Request body :" + JSON.stringify(req.body));
+  console.log("Request body :" + JSON.stringify(req.body));
 
   var message = JSON.stringify(req.body.photo);
 
-  /*var Producer = kafka.Producer;
-  var kafka_client = new kafka.KafkaClient({ kafkaHost: config.KAFKA_HOST });
+  var Producer = kafka.Producer;
+  var client = new kafka.KafkaClient({
+    kafkaHost: config.KAFKA_HOST,
+    requestTimeout: 10000
+  });
 
-  var kafka_user_producer = new Producer(kafka_client);
+  var producer = new Producer(client);
 
   var payloads = [
-    { topic: "LicensePlateTextTopic", messages: JSON.stringify(message) }
+    { topic: "LicensePlateTextTopic", messages: "Tell NodeJS it was me..." }
   ];
 
-  kafka_user_producer.on("ready", function() {
-    kafka_user_producer.send(payloads, function(err, data) {
-      console.log("Data: " + data);
-      console.log("Error on data: " + err);
-    });
-  });
-  kafka_user_producer.on("error", function(err) {
-    console.log(err);
-  });*/
+  try {
+    producer.on("ready", function() {
+      producer.send(payloads, function(err, data) {
+        console.log("Data: " + data);
+        console.log("Error on data: " + err);
 
-  res.send("I received your image..." + message);
+        res.send("I received your image..." + message);
+      });
+    });
+    producer.on("error", function(err) {
+      console.log(err);
+
+      res.send("Nothing...");
+    });
+  } catch (err) {
+    res.send(err);
+  }
+
   // res.sendFile(path.join(__dirname + "/index.html"));
 });
 

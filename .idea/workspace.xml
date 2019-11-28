@@ -2,13 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9e8a35c3-4241-4b07-8699-3b8b68a88afa" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/ionic-licplat-demo/image-display/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/ionic-licplat-demo/image-display/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ionic-licplat-demo/image-display/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/ionic-licplat-demo/image-display/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ionic-licplat-demo/image-display/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/ionic-licplat-demo/image-display/src/app/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ionic-licplat-demo/image-display/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/ionic-licplat-demo/image-display/src/app/app.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ionic-licplat-demo/image-display/src/app/services/photo.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/ionic-licplat-demo/image-display/src/app/services/photo.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ionic-licplat-demo/image-display/src/app/services/video.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/ionic-licplat-demo/image-display/src/app/services/video.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ionic-licplat-demo/image-display/src/app/tab2/tab2.page.html" beforeDir="false" afterPath="$PROJECT_DIR$/ionic-licplat-demo/image-display/src/app/tab2/tab2.page.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ionic-licplat-demo/image-display/src/app/tab2/tab2.page.ts" beforeDir="false" afterPath="$PROJECT_DIR$/ionic-licplat-demo/image-display/src/app/tab2/tab2.page.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ionic-licplat-demo/image-display/src/app/tab3/tab3.page.html" beforeDir="false" afterPath="$PROJECT_DIR$/ionic-licplat-demo/image-display/src/app/tab3/tab3.page.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ionic-licplat-demo/image-display/src/app/tab3/tab3.page.ts" beforeDir="false" afterPath="$PROJECT_DIR$/ionic-licplat-demo/image-display/src/app/tab3/tab3.page.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ionic-licplat-demo/image-kafka-server/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/ionic-licplat-demo/image-kafka-server/config.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ionic-licplat-demo/image-kafka-server/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/ionic-licplat-demo/image-kafka-server/index.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -19,11 +19,31 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="DefaultGradleProjectSettings">
-    <option name="testRunner" value="GRADLE" />
-    <option name="delegatedBuild" value="true" />
+    <option name="isMigrated" value="true" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="Pixel_2_API_28" />
+  <component name="FileEditorManager">
+    <leaf>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/ionic-licplat-demo/image-display/src/app/app-settings/app-settings.page.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="371">
+              <caret line="53" column="9" selection-start-line="53" selection-start-column="9" selection-end-line="53" selection-end-column="9" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/ionic-licplat-demo/image-display/src/app/app-settings/app-settings.page.ts" />
+      </list>
+    </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="580" />
@@ -36,7 +56,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -49,14 +68,46 @@
               <item name="IP-FA-LPR-Ionic" type="462c0819:PsiDirectoryNode" />
               <item name="ionic-licplat-demo" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="IP-FA-LPR-Ionic" type="b2602c69:ProjectViewProjectNode" />
+              <item name="IP-FA-LPR-Ionic" type="462c0819:PsiDirectoryNode" />
+              <item name="ionic-licplat-demo" type="462c0819:PsiDirectoryNode" />
+              <item name="image-display" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="IP-FA-LPR-Ionic" type="b2602c69:ProjectViewProjectNode" />
+              <item name="IP-FA-LPR-Ionic" type="462c0819:PsiDirectoryNode" />
+              <item name="ionic-licplat-demo" type="462c0819:PsiDirectoryNode" />
+              <item name="image-display" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="IP-FA-LPR-Ionic" type="b2602c69:ProjectViewProjectNode" />
+              <item name="IP-FA-LPR-Ionic" type="462c0819:PsiDirectoryNode" />
+              <item name="ionic-licplat-demo" type="462c0819:PsiDirectoryNode" />
+              <item name="image-display" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="IP-FA-LPR-Ionic" type="b2602c69:ProjectViewProjectNode" />
+              <item name="IP-FA-LPR-Ionic" type="462c0819:PsiDirectoryNode" />
+              <item name="ionic-licplat-demo" type="462c0819:PsiDirectoryNode" />
+              <item name="image-display" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="app-settings" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
       <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
   </component>
   <component name="RunDashboard">
@@ -70,6 +121,60 @@
         </RuleState>
       </list>
     </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="Unnamed1" type="AndroidRunConfigurationType" factoryName="Android App">
+      <option name="DEPLOY" value="true" />
+      <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
+      <option name="DEPLOY_AS_INSTANT" value="false" />
+      <option name="ARTIFACT_NAME" value="" />
+      <option name="PM_INSTALL_OPTIONS" value="" />
+      <option name="DYNAMIC_FEATURES_DISABLED_LIST" value="" />
+      <option name="ACTIVITY_EXTRA_FLAGS" value="" />
+      <option name="MODE" value="default_activity" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
+      <option name="SKIP_NOOP_APK_INSTALLATIONS" value="true" />
+      <option name="FORCE_STOP_RUNNING_APP" value="true" />
+      <option name="TARGET_SELECTION_MODE" value="SHOW_DIALOG" />
+      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
+      <option name="PREFERRED_AVD" value="" />
+      <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
+      <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
+      <option name="DEBUGGER_TYPE" value="Auto" />
+      <Auto>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Auto>
+      <Hybrid>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Hybrid>
+      <Java />
+      <Native>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Native>
+      <Profilers>
+        <option name="ADVANCED_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_CONFIGURATION_NAME" value="Sample Java Methods" />
+      </Profilers>
+      <option name="DEEP_LINK" value="" />
+      <option name="ACTIVITY_CLASS" value="" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -85,24 +190,35 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
+    <frame x="-8" y="-8" width="2576" height="1066" extended-state="6" />
     <layout>
       <window_info id="Captures" order="0" weight="0.25" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.2924107" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.2923562" />
       <window_info id="Structure" order="2" side_tool="true" />
       <window_info id="Image Layers" order="3" />
       <window_info id="Designer" order="4" />
       <window_info id="Resources Explorer" order="5" />
       <window_info id="Capture Tool" order="6" />
       <window_info id="Favorites" order="7" side_tool="true" />
+      <window_info anchor="bottom" id="Run" />
+      <window_info anchor="bottom" id="Debug" />
       <window_info anchor="bottom" id="Version Control" order="0" />
       <window_info anchor="bottom" id="TODO" order="1" />
-      <window_info anchor="bottom" id="Terminal" order="2" visible="true" weight="0.49436393" />
+      <window_info anchor="bottom" id="Terminal" order="2" visible="true" weight="0.27116826" />
       <window_info anchor="bottom" id="Event Log" order="3" side_tool="true" />
       <window_info anchor="right" id="Capture Analysis" order="0" />
       <window_info anchor="right" id="Theme Preview" order="1" />
       <window_info anchor="right" id="Assistant" order="2" weight="0.17845787" />
       <window_info anchor="right" id="Palette&#9;" order="3" />
     </layout>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/ionic-licplat-demo/image-display/src/app/app-settings/app-settings.page.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="371">
+          <caret line="53" column="9" selection-start-line="53" selection-start-column="9" selection-end-line="53" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
   </component>
 </project>
