@@ -80,4 +80,18 @@ export class Tab2Page implements OnInit {
     this.presentAlert('This page allows you to capture images/videos for training');
   }
 
+  ProduceToKafka(photo: Photo) {
+    this.photoService.ProduceToKafka(photo).subscribe(
+      photo => {
+        console.log(photo);
+      }
+    );
+  }
+
+  
 }
+
+class Photo {
+  data: any;
+  date: Date;
+};

@@ -1,4 +1,4 @@
 module.exports = {
-  KAFKA_HOST: "3.234.15.241:9092",
+  KAFKA_HOST: "54.198.122.12:9092",
   PORT: process.env.PORT || 5000
 };

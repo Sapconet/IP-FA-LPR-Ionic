@@ -14,7 +14,7 @@
 <ion-content class="ion-padding">
 
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
-    <ion-refresher-content pullingIcon="arrow-down" pullingText="Pull to refresh" refreshingSpinner="circles"
+    <ion-refresher-content pullingIcon="arrow-down" pullingText="Pull to refresh" refreshingSpinner="dots"
       refreshingText="Refreshing...">
     </ion-refresher-content>
   </ion-refresher>
@@ -29,7 +29,10 @@
     </ion-row>
   </ion-grid> -->
 
-  <ion-list lines="none">
+  <ion-list lines="full">
+    <ion-list-header color="primary">
+      <ion-label>List of Images Taken:</ion-label>
+    </ion-list-header>
     <ion-item-sliding *ngFor="let photo of photoService.photos">
       <ion-item (click)="photoService.giveImgInfo(photo.data)">
         <ion-thumbnail size="large" slot="start">
@@ -39,7 +42,7 @@
       </ion-item>
 
       <ion-item-options side="end">
-        <ion-item-option color="danger" expandable="true" (click)="photoService.clearSelectedOne($event)">
+        <ion-item-option color="danger" expandable="true" (click)="photoService.clearSelectedOne(photo)">
           <ion-icon slot="icon-only" name="trash"></ion-icon>
         </ion-item-option>
       </ion-item-options>

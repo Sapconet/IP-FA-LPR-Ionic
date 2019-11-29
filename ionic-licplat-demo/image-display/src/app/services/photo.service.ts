@@ -2,7 +2,7 @@ import { Injectable, ChangeDetectorRef } from '@angular/core';
 import { Camera, CameraOptions, PictureSourceType } from '@ionic-native/camera/ngx';
 import { Storage } from '@ionic/storage';
 
-import { HttpClient, HttpHeaders, HttpUrlEncodingCodec } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse, HttpUrlEncodingCodec } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ActionSheetController, ToastController, Platform, LoadingController, AlertController } from '@ionic/angular';
 
@@ -10,7 +10,7 @@ import { OpenALPR, OpenALPROptions, OpenALPRResult } from '@ionic-native/openalp
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 
 import { File, FileEntry } from '@ionic-native/File/ngx';
-/* 
+/*
 import { FilePath } from '@ionic-native/file-path/ngx';
 
 import { WebView } from '@ionic-native/ionic-webview/ngx';
@@ -51,7 +51,22 @@ export class PhotoService {
         date: new Date()
       });
 
-      this.ProduceToKafka(imageDATA);
+      this.ProduceToKafka(imageDATA).subscribe(
+        response => {
+          let img = response.body;
+
+          console.log(img);
+          this.presentToast("I think it worked..." + response);
+        },
+        error => {
+          console.log("post call in error", error);
+          this.presentToast(JSON.stringify(error));
+
+        },
+        () => {
+          console.log("The post observable is now completed.");
+        }
+      );
 
       // Save all photos for later viewing
       this.storage.set('photos', this.photos);
@@ -132,22 +147,44 @@ export class PhotoService {
   //   this.storage.clear();
   // }
 
-  ProduceToKafka(photo: Photo) {
+  ProduceToKafka(photo: Photo): Observable<HttpResponse<Photo>> {
     console.log("Producing to Kafka");
-    // console.log(photo);
 
     this.presentToast('Image sent to Kafka for training...');
 
-    // const api_url = 'http://localhost:5000/send-img';
+    const HttpOptions = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
 
-    // // const sendPhoto = JSON.parse('{ "photo": "A base64 image" }');
-    // const sendPhoto = JSON.parse('{ "photo": ' + photo + ' }');
-    // console.log(sendPhoto);
 
-    // const HttpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
+    return this.http.post<Photo>("http://localhost:5000/send-img",
+      {
+        "photo": photo.data
+      },
+      {
+        headers: HttpOptions,
+        observe: 'response'
+      }
+    );
+    // .subscribe(
+    //   (val) => {
+    //     console.log("post call successful value returned in body", val);
+    //     this.presentToast("Well, hello sailor!");
+    //   },
+    //   response => {
+    //     console.log("post call in error", response);
+    //     this.presentToast(JSON.stringify(response.error.text));
 
-    // this.http.post(api_url, sendPhoto, HttpOptions).subscribe(
-    //   val => {
+    //   },
+    //   () => {
+    //     console.log("The post observable is now completed.");
+    //   }
+    // );
+
+
+
+    // this.http.post("http://localhost:5000/send-img", photo, HttpOptions).subscribe(
+    //   (val) => {
     //     console.log("post call successful value returned in body", val);
     //     this.presentToast("Well, hello sailor!");
     //   },

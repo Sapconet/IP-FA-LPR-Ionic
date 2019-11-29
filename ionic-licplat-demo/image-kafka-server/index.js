@@ -7,6 +7,19 @@ var cors = require("cors");
 var config = require("./config");
 
 const app = express();
+
+var originsWhitelist = ["http://localhost:8100"];
+
+var corsOptions = {
+  origin: function(origin, callback) {
+    var isWhitelisted = originsWhitelist.indexOf(origin) !== -1;
+    callback(null, isWhitelisted);
+  },
+  credentials: true
+};
+
+app.use("*", cors(corsOptions));
+
 const port = config.PORT;
 app.use(bodyParser.json({ limit: "50mb" }));
 app.use(
@@ -38,9 +51,7 @@ app.post("/send-img", (req, res) => {
 
   var producer = new Producer(client);
 
-  var payloads = [
-    { topic: "LicensePlateTextTopic", messages: "Tell NodeJS it was me..." }
-  ];
+  var payloads = [{ topic: "test", messages: message }];
 
   try {
     producer.on("ready", function() {
@@ -63,8 +74,9 @@ app.post("/send-img", (req, res) => {
   // res.sendFile(path.join(__dirname + "/index.html"));
 });
 
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname + "/index.html"));
+app.post("/", (req, res) => {
+  console.log("API call detected...");
+  res.send("hi");
 });
 
 app.post("/errors", (req, res) => {
