@@ -138,8 +138,10 @@ export class PhotoService {
     await alert.present();
   }
 
-  clearSelectedOne(event) {
-    this.presentAlertConfirm("Are you sure you wish to delete this image? It cannot be undone.")
+  clearSelectedOne(photo) {
+    this.presentAlertConfirm("Are you sure you wish to delete this image? It cannot be undone.");
+
+    // this.storage.remove(photo);
   }
 
   // clearAll() {

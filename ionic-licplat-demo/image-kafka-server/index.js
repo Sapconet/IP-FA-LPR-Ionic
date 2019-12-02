@@ -39,9 +39,10 @@ var path = require("path"); /*,
 
 app.post("/send-img", (req, res) => {
   console.log("Request received");
-  console.log("Request body :" + JSON.stringify(req.body));
+  // console.log("Request body :" + JSON.stringify(req.body));
 
-  var message = JSON.stringify(req.body.photo);
+  // var message = JSON.stringify(req.body.photo);
+  var message = "Test message";
 
   var Producer = kafka.Producer;
   var client = new kafka.KafkaClient({
@@ -53,23 +54,19 @@ app.post("/send-img", (req, res) => {
 
   var payloads = [{ topic: "test", messages: message }];
 
-  try {
-    producer.on("ready", function() {
-      producer.send(payloads, function(err, data) {
-        console.log("Data: " + data);
-        console.log("Error on data: " + err);
+  producer.on("ready", function() {
+    producer.send(payloads, function(err, data) {
+      console.log("Data: " + data);
+      console.log("Error on data: " + err);
 
-        res.send("I received your image..." + message);
-      });
+      res.send("I received your image..." + message);
     });
-    producer.on("error", function(err) {
-      console.log(err);
+  });
+  producer.on("error", function(err) {
+    console.log(err);
 
-      res.send("Nothing...");
-    });
-  } catch (err) {
-    res.send(err);
-  }
+    res.send("Nothing...");
+  });
 
   // res.sendFile(path.join(__dirname + "/index.html"));
 });
@@ -85,5 +82,5 @@ app.post("/errors", (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log("Server is running on port 5000");
+  console.log("Server is running on port " + port);
 });

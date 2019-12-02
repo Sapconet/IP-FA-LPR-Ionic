@@ -88,7 +88,7 @@ export class Tab2Page implements OnInit {
     );
   }
 
-  
+
 }
 
 class Photo {

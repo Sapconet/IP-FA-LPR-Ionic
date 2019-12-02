@@ -20,7 +20,7 @@ export class Tab3Page implements OnInit {
   startLivePreview() {
     console.log('Starting Preview...');
 
-    const cameraPreviewOptions: CameraPreviewOptions = {
+    /* const cameraPreviewOptions: CameraPreviewOptions = {
       x: 0,
       y: 0,
       width: window.screen.width - 50,
@@ -39,7 +39,7 @@ export class Tab3Page implements OnInit {
       }).catch((err) => {
         alert(err);
       });
-    });
+    });*/
 
     this.hideStart = !this.hideStart;
   }
@@ -50,7 +50,7 @@ export class Tab3Page implements OnInit {
 
     this.hideStart = !this.hideStart;
 
-    this.cameraPreview.stopCamera();
+    // this.cameraPreview.stopCamera();
   }
 
   async presentAlert(text) {

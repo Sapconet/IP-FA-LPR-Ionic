@@ -35,7 +35,7 @@ export class AppSettingsPage implements OnInit {
       this.presentToast('Dark Mode is off')
     }
 
-    const toggle = document.querySelector('#themeToggle');
+    const toggle: HTMLInputElement = document.querySelector('#themeToggle');
 
     document.body.classList.toggle('dark', event.detail.checked);
 
@@ -51,7 +51,7 @@ export class AppSettingsPage implements OnInit {
 
     // Called by the media query to check/uncheck the toggle
     function checkToggle(shouldCheck) {
-      // toggle.check = shouldCheck;
+      toggle.checked = shouldCheck;
     }
   }
 
